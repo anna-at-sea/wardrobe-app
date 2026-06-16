@@ -1,0 +1,54 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="text-center mb-5">
+        <h1 class="fw-bold" style="color:#4a4a4a;">Welcome to MixMyCloset</h1>
+        <p class="lead" style="color:#6b6b6b;">Turn your favorite inspiration looks into outfits with your own clothes.</p>
+    </div>
+
+    <!-- Feature Sections -->
+    <div class="row text-center g-4">
+        <div class="col-md-4">
+          <a href="#" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100" style="background-color:#fff0f5;">
+                <img src="{% static 'images/wardrobehuy-nguyen-YhP-E5YwOGE-unsplash.jpg' %}" class="card-img-top card-img-fixed" alt="Wardrobe">
+              <div class="card-body">
+                <h5 class="card-title" style="color:#4a4a4a;">My Wardrobe</h5>
+                <p class="card-text" style="color:#6b6b6b;">Upload and organize your clothes with photos and descriptions.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      
+        <div class="col-md-4">
+          <a href="#" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100" style="background-color:#e0f7fa;">
+                <img src="{% static 'images/inspirationharper-sunday-kfSjyxAWhEc-unsplash.jpg' %}" class="card-img-top card-img-fixed" alt="Inspirations">
+              <div class="card-body">
+                <h5 class="card-title" style="color:#4a4a4a;">Inspirations</h5>
+                <p class="card-text" style="color:#6b6b6b;">Upload outfit inspiration images from Pinterest or elsewhere to create your look library.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      
+        <div class="col-md-4">
+          <a href="#" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100" style="background-color:#fffaf0;">
+                <img src="{% static 'images/looksjulia-kicova-Cg-aEozbir8-unsplash.jpg' %}" class="card-img-top card-img-fixed" alt="My Looks">
+              <div class="card-body">
+                <h5 class="card-title" style="color:#4a4a4a;">My Looks</h5>
+                <p class="card-text" style="color:#6b6b6b;">Combine your wardrobe pieces with inspirations and create your looks.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    <!-- Optional Call to Action -->
+    <div class="text-center mt-5">
+        <h4 style="color:#4a4a4a;">Start uploading your clothes and inspirations today!</h4>
+        <a href="#" class="btn btn-light border border-secondary btn-lg mt-3" style="background-color:#f0f5ff; color:#4a4a4a;">Upload Now</a>
+    </div>
+{% endblock %}

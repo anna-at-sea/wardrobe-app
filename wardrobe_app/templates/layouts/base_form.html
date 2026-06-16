@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 75vh;">
+  <div class="card shadow-sm border-0" style="max-width: 500px; width: 100%; background-color: #fffafc;">
+    <div class="card-body p-4">
+      {% if title %}
+        <h3 class="text-center mb-4" style="color:#4a4a4a;">{{ title }}</h3>
+      {% endif %}
+
+      <form method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-light border border-secondary" style="background-color:#e0f7fa; color:#4a4a4a;">
+            {{ button_text|default:"Submit" }}
+          </button>
+        </div>
+      </form>
+
+      {% if extra_links %}
+        <div class="text-center mt-3">
+          {{ extra_links|safe }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
