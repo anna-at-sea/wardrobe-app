@@ -1,16 +1,17 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.translation import gettext as _
 
 
 class User(AbstractUser):
 
     class Meta:
-        verbose_name = "User"
+        verbose_name = _("User")
 
     email = models.EmailField(
-        "email address", blank=False, unique=True,
+        _("email address"), blank=False, unique=True,
         error_messages={
-            "unique": "A user with that email already exists."
+            "unique": _("A user with that email already exists.")
         },
     )
 

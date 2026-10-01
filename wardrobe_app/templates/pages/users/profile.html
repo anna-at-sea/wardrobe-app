@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block content %}
@@ -7,7 +8,39 @@
   <!-- Profile Header -->
   <div class="text-center mb-4">
     <h2 class="fw-bold" style="color:#4a4a4a;">{{ user.username }}</h2>
-    <p class="text-muted">{{ user.bio|default:"No bio yet." }}</p>
+    <div class="dropdown">
+        <button
+            class="btn btn-light border dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+        >
+            <i class="bi bi-gear me-1"></i>
+            {% translate "Account Settings" %}
+        </button>
+
+        <ul class="dropdown-menu">
+            <li>
+                <a class="dropdown-item" href="{% url 'user_update' username=user.username %}">
+                    <i class="bi bi-person me-2"></i>
+                    {% translate "Edit Profile" %}
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="{% url 'user_password_change' username=user.username %}">
+                    <i class="bi bi-lock me-2"></i>
+                    {% translate "Change Password" %}
+                </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <a class="dropdown-item text-danger" href="{% url 'user_delete' username=user.username %}">
+                    <i class="bi bi-trash me-2"></i>
+                    {% translate "Delete Account" %}
+                </a>
+            </li>
+        </ul>
+    </div>
   </div>
 
   <!-- Quick Stats -->
@@ -16,63 +49,63 @@
       <div class="card border-0 shadow-sm py-3" style="background-color:#fce4ec;">
         <h4 class="fw-bold">(count)</h4>
         <!-- {{ wardrobe_count }} -->
-        <p class="mb-0">Clothes</p>
+        <p class="mb-0">{% translate "Clothes" %}</p>
       </div>
     </div>
     <div class="col-md-4">
       <div class="card border-0 shadow-sm py-3" style="background-color:#e0f7fa;">
         <h4 class="fw-bold">(count2)</h4>
         <!-- {{ inspiration_count }} -->
-        <p class="mb-0">Inspirations</p>
+        <p class="mb-0">{% translate "Inspirations" %}</p>
       </div>
     </div>
     <div class="col-md-4">
       <div class="card border-0 shadow-sm py-3" style="background-color:#fffaf0;">
         <h4 class="fw-bold">(count3)</h4>
         <!-- {{ looks_count }} -->
-        <p class="mb-0">Looks Created</p>
+        <p class="mb-0">{% translate "Looks Created" %}</p>
       </div>
     </div>
   </div>
 
   <!-- Wardrobe Section -->
-  <h4 class="mb-3" style="color:#4a4a4a;">My Wardrobe</h4>
+  <h4 class="mb-3" style="color:#4a4a4a;">{% translate "My Wardrobe" %}</h4>
   <div class="row g-3 mb-5">
     <!-- { for item in wardrobe_items %} -->
     <div class="col-md-3">
       <div class="card h-100 border-0 shadow-sm" style="background-color:#fff0f5;">
         <!-- <img src="{{ item.image.url }}" class="card-img-top card-img-fixed" alt="{{ item.name }}"> -->
         <div class="card-body p-2 text-center">
-          <p class="mb-0" style="color:#4a4a4a;">Item Name</p>
+          <p class="mb-0" style="color:#4a4a4a;">{% translate "Item Name" %}</p>
           <!-- {{ item.name }} -->
         </div>
       </div>
     </div>
     <!-- { empty %} -->
-    <p class="text-muted">No clothes uploaded yet.</p>
+    <p class="text-muted">{% translate "No clothes uploaded yet." %}</p>
     <!-- { endfor %} -->
   </div>
 
   <!-- Inspirations Section -->
-  <h4 class="mb-3" style="color:#4a4a4a;">Inspirations</h4>
+  <h4 class="mb-3" style="color:#4a4a4a;">{% translate "Inspirations" %}</h4>
   <div class="row g-3 mb-5">
     <!-- {% for inspo in inspirations %} -->
     <div class="col-md-3">
       <div class="card h-100 border-0 shadow-sm" style="background-color:#e0f7fa;">
         <!-- <img src="{{ inspo.image.url }}" class="card-img-top card-img-fixed" alt="{{ inspo.title }}"> -->
         <div class="card-body p-2 text-center">
-          <p class="mb-0" style="color:#4a4a4a;">Inspo Title</p>
+          <p class="mb-0" style="color:#4a4a4a;">{% translate "Inspo Title" %}</p>
           <!-- {{ inspo.title }} -->
         </div>
       </div>
     </div>
     {% empty %}
-    <p class="text-muted">No inspirations uploaded yet.</p>
+    <p class="text-muted">{% translate "No inspirations uploaded yet." %}</p>
     <!-- {% endfor %} -->
   </div>
 
   <!-- Looks Section -->
-  <h4 class="mb-3" style="color:#4a4a4a;">My Looks</h4>
+  <h4 class="mb-3" style="color:#4a4a4a;">{% translate "My Looks" %}</h4>
   <div class="row g-3">
     <!-- {% for look in looks %} -->
     <div class="col-md-4">
@@ -83,19 +116,19 @@
                 <img src="{{ look.inspiration.image.url }}" class="card-img-top card-img-fixed" alt="{{ look.title }}">
             {% else %} -->
                 <div class="card-body text-center py-5">
-                    <p class="mb-0 text-muted">No image available</p>
+                    <p class="mb-0 text-muted">{% translate "No image available" %}</p>
                 </div>
         <!-- {% endif %} -->
         <div class="card-body p-2 text-center">
-          <p class="mb-0 fw-bold" style="color:#4a4a4a;">Look Title</p>
+          <p class="mb-0 fw-bold" style="color:#4a4a4a;">{% translate "Look Title" %}</p>
           <!-- {{ look.title }} -->
-          <small class="text-muted">(count) items used</small>
+          <small class="text-muted">{% translate "(count) items used" %}</small>
           <!-- {{ look.clothes.count }} -->
         </div>
       </div>
     </div>
     {% empty %}
-    <p class="text-muted">No looks created yet.</p>
+    <p class="text-muted">{% translate "No looks created yet." %}</p>
     <!-- {% endfor %} -->
   </div>
 

@@ -1,13 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
+from django.utils.translation import gettext as _
 
 
-# class UserLoginRequiredMixin(LoginRequiredMixin):
+class UserLoginRequiredMixin(LoginRequiredMixin):
 
-#     def handle_no_permission(self):
-#         messages.warning(self.request, "You are not logged in! Please log in.")
-#         return redirect('login')
+    def handle_no_permission(self):
+        messages.warning(self.request, _("You are not logged in! Please log in."))
+        return redirect('login')
 
 
 class UserPermissionMixin:
@@ -18,7 +19,7 @@ class UserPermissionMixin:
         user_match = (kwargs.get('username') == request.user.username)
         if auth and username_in_kwargs and not user_match:
             messages.warning(
-                request, "You don't have permission to view or edit other user."
+                request, _("You don't have permission to view or edit other user.")
             )
             return redirect('index')
         return super().dispatch(request, *args, **kwargs)

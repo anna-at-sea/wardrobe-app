@@ -15,19 +15,19 @@ urlpatterns = [
         views.UserFormCreateView.as_view(),
         name='user_create'
     ),
-    # path(
-    #     '<str:username>/update/',
-    #     views.UserFormUpdateView.as_view(),
-    #     name='user_update'
-    # ),
-    # path(
-    #     '<str:username>/password_change/',
-    #     views.UserPasswordChangeView.as_view(),
-    #     name='user_password_change'
-    # ),
-    # path(
-    #     '<str:username>/delete/',
-    #     views.UserFormDeleteView.as_view(),
-    #     name='user_delete'
-    # ),
+    path(
+        '<str:username>/update/',
+        views.UserFormUpdateView.as_view(),
+        name='user_update'
+    ),
+    path(
+        '<str:username>/password_change/',
+        views.UserPasswordChangeView.as_view(),
+        name='user_password_change'
+    ),
+    path(
+        '<str:username>/delete/',
+        views.UserFormDeleteView.as_view(),
+        name='user_delete'
+    ),
 ]

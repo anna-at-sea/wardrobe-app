@@ -8,7 +8,11 @@
       {% if title %}
         <h3 class="text-center mb-4" style="color:#4a4a4a;">{{ title }}</h3>
       {% endif %}
-
+      {% if delete_prompt %}
+      <div class="alert alert-danger" role="alert">
+        <p class="mb-0" style="white-space: pre-line;">{{ delete_prompt|default:'' }}</p>
+      </div>
+      {% endif %}
       <form method="post" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {{ form|crispy }}
