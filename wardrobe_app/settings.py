@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'wardrobe_app',
     'django_bootstrap5',
     'wardrobe_app.users',
+    'wardrobe_app.clothes',
     'crispy_forms',
     'crispy_bootstrap5',
 ]

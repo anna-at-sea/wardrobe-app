@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ValidationError
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 
@@ -23,3 +24,20 @@ class UserPermissionMixin:
             )
             return redirect('index')
         return super().dispatch(request, *args, **kwargs)
+
+
+def validate_image(image):
+    max_size_mb = 15
+    if image.size > max_size_mb * 1024 * 1024:
+        raise ValidationError(_(f"Image size should not exceed {max_size_mb} MB."))
+
+
+def image_upload_path(instance, filename):
+    extension = filename.split('.')[-1]
+    model_name = instance.__class__.__name__.lower()
+    folder = f"{model_name}s"
+    if instance.name:
+        name = instance.name
+    else:
+        name = f"{model_name}-{instance.pk or 'unassigned'}"
+    return f"{folder}/{name}.{extension.lower()}"
